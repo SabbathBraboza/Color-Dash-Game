@@ -6,6 +6,7 @@ namespace ColorDash.Managers.InputManager
 {
     public class Input_Manager : MonoBehaviour
     {
+        [Header("B U T T O N S:")]
         [SerializeField] private Button RedButton;
         [SerializeField] private Button GreenButton;
         [SerializeField] private Button BlueButton;

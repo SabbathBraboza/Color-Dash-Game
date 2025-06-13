@@ -1,3 +1,5 @@
+using ColorDash.Managers.AudioManager;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ColorDash.Managers.GameManager
@@ -7,18 +9,19 @@ namespace ColorDash.Managers.GameManager
     /// </summary>
     public enum PlayerColor { Red, Green, Blue }
 
-    /// <summary>
-    /// Used Custom Singleton 
-    /// </summary>
     public class Game_Manager : MonoBehaviour
     {
         public static Game_Manager instance;
 
         private SpriteRenderer _PlayerSprite;
 
+        [Header("C O L O R S:")]
         public Color RedColor = Color.red;
         public Color GreenColor = Color.green;
         public Color BlueColor = Color.blue;
+
+        [Space(5f)]
+        [Header("C U R R E N T")]
         public PlayerColor CurrentColor;
 
         private void Awake()
@@ -31,9 +34,23 @@ namespace ColorDash.Managers.GameManager
             }
         }
 
-        public void SetColorRed() => SetColor(PlayerColor.Red);
-        public void SetColorGreen() => SetColor(PlayerColor.Green);
-        public void SetColorBlue() => SetColor(PlayerColor.Blue);
+        public void SetColorRed() 
+        {
+            Audio_Manager.AudioInstance.PlaySFX(0);
+            SetColor(PlayerColor.Red); 
+        }
+
+        public void SetColorGreen()
+        {
+            Audio_Manager.AudioInstance.PlaySFX(0);
+            SetColor(PlayerColor.Green);
+        }
+
+        public void SetColorBlue()
+        {
+            Audio_Manager.AudioInstance.PlaySFX(0);
+            SetColor(PlayerColor.Blue);
+        }
 
 
         /// <summary>
@@ -43,15 +60,17 @@ namespace ColorDash.Managers.GameManager
         {
             CurrentColor = color;
 
+            Color TargetColor = Color.white;
             switch (CurrentColor)
             {
                 case PlayerColor.Red:
-                    _PlayerSprite.color = RedColor; break;
+                    TargetColor = RedColor; break;
                 case PlayerColor.Green:
-                    _PlayerSprite.color = GreenColor; break;
+                    TargetColor = GreenColor; break;
                 case PlayerColor.Blue:
-                    _PlayerSprite.color = BlueColor; break;
+                    TargetColor = BlueColor; break;
             }
+            _PlayerSprite.DOColor(TargetColor, 0.7f);
         }
 
         public string GetCurrentColorTag()

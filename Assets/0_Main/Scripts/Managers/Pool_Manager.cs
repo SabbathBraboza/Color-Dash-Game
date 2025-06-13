@@ -16,13 +16,11 @@ namespace ColorDash.Managers.PoolManager
     {
         public static Pool_Manager instance;
 
+        [Header("P E R F A B S")]
         public List<GatePoolItem> poolItems;
         public Dictionary<string, Queue<GameObject>> pooldictionary;
 
-        private void Awake()
-        {
-            instance = this;
-        }
+        private void Awake() => instance = this;
 
         private void Start()
         {

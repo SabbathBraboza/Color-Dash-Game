@@ -1,3 +1,4 @@
+using ColorDash.Managers.AudioManager;
 using ColorDash.Managers.GameManager;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
 
         if (GateTag == PlayerTag)
         {
-            // Add UI like Score and Effects
+            Audio_Manager.AudioInstance.PlaySFX(2);
             In_Game_UI.instance.InceraseScore(1);
             Debug.Log($"Correct Gate Passed: {GateTag}");
         }
