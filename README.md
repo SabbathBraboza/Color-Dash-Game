@@ -2,27 +2,24 @@
  Color Dash Game Made in Unity 6.1
 
  # Game Controls
-   player controls are 3 buttons with Red, Green and Blue color.
+   Player controls are 3 buttons with Red, Green and Blue color.
  
   # Game logic explanation
-   Core Mechancs:
-   1. The Player Stay stationery.
-   2. Gates appears At intervals and move towards player each gate having a specific color: Red,Green or Blue.
-   3. The Player must tap the corresponding color button to change their character's color to match the gate.
-   4. if the character passes through a gate with a matching color, the game continues and the player earns 1 point.
-   5. if the character passes through a gate with a non matching color, the  game over.
-
-# logic Used
- 1. Game Manager Handles logic between player and gates
- 2. Gates have tags: Red, Green and Blue.
- 3. Used Object pooling for spawning the Gates.
- 4. Patterns Used: Singleton, Object Pooling, Observer/Events and State Pattern.
+   1. Player Color Change: The Player can Swtich Between Red, Green and Blue Using 3 UI Buttons. and The Current Color is Stored and Updated via The Game Manager script.
+   2. Gate Spawning: Gates of Random colors(Red, green and blue) are spawned periodically using the Gate_Spawn script.
+   3. Collsion logic:
+      When the player collides wiht gates.
+      1. if the player's color matchs the gate color Gains 1 Point.
+      2. if the player's color does not match: trigger Game Over.
+      
+   4. Score Management: Score is Increamented through In_Game_UI script when a correct gate passed and Compared against the high score store using PlayerPrefs.
+   
+# Design Patterns Used
+ 1. Singleton: Used in Manager like InGameUI, GameManager, AudioManager and PoolManager scripts. to Maintain global, easily accessible instance.
+ 2. Object Pooling: Used in PoolManager to Spawn and reuse gates efficiently without frequent instantiation/destory.
+ 3. Event-Driven Programming: UI Buttons Tigger player color changes via Listeners InputManager Scripts.
 
 # Bonus Features Used:
  1. Added Sound Effects for Tapping, Passing Gate, Game Over.
  2. Simple animation On Color Switch.
-
-
-   
-       
-  
+ 
